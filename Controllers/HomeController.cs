@@ -11,7 +11,8 @@ namespace ClickSign.APIClientTest.Controllers
     {
         public ActionResult Index()
         {
-            ViewData["Message"] = "Welcome to ASP.NET MVC!";
+			var click = new Clicksign.Clicksign ();
+			ViewData["Message"] = "Welcome to ASP.NET MVC!" + click.Host;
 
             return View();
         }
