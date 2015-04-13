@@ -3,12 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickSign.APIClientTest", "ClickSign.APIClientTest.csproj", "{B7256A58-8966-49D8-8986-FB9935845DE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickSign.APIClientTest.Tests", "unitTests\ClickSign.APIClientTest.Tests.csproj", "{AC3556FC-B258-4F3D-A229-5263362F231F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC3556FC-B258-4F3D-A229-5263362F231F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC3556FC-B258-4F3D-A229-5263362F231F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC3556FC-B258-4F3D-A229-5263362F231F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC3556FC-B258-4F3D-A229-5263362F231F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B7256A58-8966-49D8-8986-FB9935845DE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B7256A58-8966-49D8-8986-FB9935845DE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7256A58-8966-49D8-8986-FB9935845DE6}.Release|Any CPU.ActiveCfg = Release|Any CPU

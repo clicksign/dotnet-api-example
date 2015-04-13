@@ -14,6 +14,12 @@ namespace ClickSign.APIClientTest
 			Send ("oi");
 			Send ("oi");
 			Send ("oi");
+
+			var clicksign = new Clicksign.Clicksign();
+			var list = clicksign.List();
+
+			Console.WriteLine (list.Count);
+			Send (list.Count.ToString());
 		}
 	}
 }
