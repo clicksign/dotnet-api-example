@@ -58,7 +58,7 @@ namespace dotnet_example.Hubs
         public void UploadDocument()
         {
             //Envio através do caminho do arquivo
-            string filePath = System.Web.HttpContext.Current.Server.MapPath(@"..\Teste-Rodrigo.docx");
+            string filePath = System.Web.HttpContext.Current.Server.MapPath(@"..\Documento-Teste.docx");
 
             _clicksign.Upload(filePath);
 
