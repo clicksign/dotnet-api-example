@@ -9,7 +9,7 @@ namespace dotnet_example.Hubs
 {
     public class SimpleHub : Hub
     {
-        private Clicksign.Clicksign _clicksign;
+        private static Clicksign.Clicksign _clicksign;
 
         public SimpleHub()
         {
@@ -36,31 +36,31 @@ namespace dotnet_example.Hubs
             Send("Fim");
         }
 
-        private void ListDocuments()
+        public static void ListDocuments()
         {
-            var list = _clicksign.List();
+            var list = new Clicksign.Clicksign().List();
 
-            if (list.Count > 0)
-            {
-                Send("Encontrei " + list.Count + " documentos, são eles: ");
-                foreach (var document in list)
-                {
-                    Send("Documento: " + document.Name + ", data de atualizacao : " +
-                         document.Updated);
-                }
-            }
-            else
-            {
-                Send("Não encontrei nenhum documento");
-            }
+            //if (list.Count > 0)
+            //{
+            //   // Send("Encontrei " + list.Count + " documentos, são eles: ");
+            //    foreach (var document in list)
+            //    {
+            //        Send("Documento: " + document.Name + ", data de atualizacao : " +
+            //             document.Updated);
+            //    }
+            //}
+            //else
+            //{
+            //    Send("Não encontrei nenhum documento");
+            //}
         }
 
-        public void UploadDocument()
+        public static void UploadDocument()
         {
             //Envio através do caminho do arquivo
             string filePath = System.Web.HttpContext.Current.Server.MapPath(@"..\Documento-Teste.docx");
 
-            _clicksign.Upload(filePath);
+            new Clicksign.Clicksign().Upload(filePath);
 
 
         }
