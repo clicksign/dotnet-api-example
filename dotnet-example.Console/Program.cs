@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Clicksign;
 using System.IO;
+using System.Threading;
 
 namespace dotnet_example.Console
 {
@@ -37,13 +38,29 @@ namespace dotnet_example.Console
             UploadDocument();
             Send("Upload finalizado");
             Send("Listando novamente os documentos");
-            ListDocuments();
+            var document = ListDocuments().First();
+            Send("Downloading o primeiro documento");
+            DownloadDocument(document.Key);
 
             Send("Fim");
             System.Console.ReadKey();
         }
 
-        private void ListDocuments()
+        private void DownloadDocument(string p)
+        {
+            DownloadResponse downloadResponse = new DownloadResponse();
+            do
+            {
+                Thread.Sleep(1000);
+                downloadResponse = _clicksign.Download("Key do document");
+            } while (!downloadResponse.isActionFinished);
+
+            var numBytes = downloadResponse.binaryFile.Count();
+            Send("Baixado arquivo com "+numBytes+" bytes");
+
+        }
+
+        private IList<Document> ListDocuments()
         {
             var list = _clicksign.List();
 
@@ -60,6 +77,8 @@ namespace dotnet_example.Console
             {
                 Send("Não encontrei nenhum documento");
             }
+
+            return list;
         }
 
         public void UploadDocument()
