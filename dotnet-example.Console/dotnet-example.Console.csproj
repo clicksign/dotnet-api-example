@@ -35,15 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Clicksign">
-      <HintPath>..\dependencies\Clicksign.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\dependencies\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="RestSharp">
-      <HintPath>..\dependencies\RestSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -65,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dotnet-example.Core\dotnet-example.Core.csproj">
+      <Project>{EC1F2D47-5C16-4114-A6F8-3A97B051EF0C}</Project>
+      <Name>dotnet-example.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,18 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
+using dotnet_example.Core;
 
 namespace dotnet_example.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTest1 : ClickSignExampleCore
     {
-        private Clicksign.Clicksign _clicksign;
 
-        [TestInitialize]
-        public void TestSetUp()
+        public override void Send(string message)
         {
-            _clicksign = new Clicksign.Clicksign();
+            Console.WriteLine(message);
         }
 
         [DeploymentItem("Documento-Teste.docx")]
@@ -34,23 +33,6 @@ namespace dotnet_example.Tests
             UploadDocument();
         }
 
-        private List<Clicksign.Document> ListDocuments()
-        {
-            var list = _clicksign.List();
-
-            return list;
-        }
-
-        public void UploadDocument()
-        {
-            //Envio através do caminho do arquivo
-            string filePath = @"Documento-Teste.docx";
-
-            string path = Directory.GetCurrentDirectory();
-
-            _clicksign.Upload(filePath);
-
-
-        }
+      
     }
 }

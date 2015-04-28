@@ -4,16 +4,16 @@ using System.Runtime.Remoting.Channels;
 using System.Threading;
 using System.Web;
 using Microsoft.AspNet.SignalR;
+using dotnet_example.Core;
 
 namespace dotnet_example.Hubs
 {
     public class SimpleHub : Hub
     {
-        private Clicksign.Clicksign _clicksign;
 
-        public SimpleHub()
+        public void StartMessages()
         {
-            _clicksign = new Clicksign.Clicksign();
+            new ClickSignExampleCoreImplementation(this).StartAllMethods();
         }
 
         public void Send(string message)
@@ -21,52 +21,26 @@ namespace dotnet_example.Hubs
             Clients.All.addMessage(message);
         }
 
-        public void StartMessages()
+        private class ClickSignExampleCoreImplementation : ClickSignExampleCore
         {
-            Send(".....Iniciando Requests.......");
+            private SimpleHub _simpleHub;
 
-            Send("Listando Documentos");
-            ListDocuments();
-            Send("Fazendo upload de um novo documento");
-            UploadDocument();
-            Send("Upload finalizado");
-            Send("Listando novamente os documentos");
-            ListDocuments();
-
-            Send("Fim");
-        }
-
-        private void ListDocuments()
-        {
-            var list = _clicksign.List();
-
-            if (list.Count > 0)
+            public ClickSignExampleCoreImplementation(SimpleHub outerInstance)
             {
-                Send("Encontrei " + list.Count + " documentos, são eles: ");
-                foreach (var document in list)
-                {
-                    Send("Documento: " + document.Name + ", data de atualizacao : " +
-                         document.Updated);
-                }
+                _simpleHub = outerInstance;
             }
-            else
+
+            public override void Send(string message)
             {
-                Send("Não encontrei nenhum documento");
+                _simpleHub.Send(message);
+            }
+
+            protected override string GetDocumentFilePath()
+            {
+                return System.Web.HttpContext.Current.Server.MapPath(@"..\Documento-Teste.docx");
             }
         }
-
-        public void UploadDocument()
-        {
-            //Envio através do caminho do arquivo
-            string filePath = System.Web.HttpContext.Current.Server.MapPath(@"..\Documento-Teste.docx");
-
-            _clicksign.Upload(filePath);
-
-
-        }
-
- 
-}
+    }
 }
 
 

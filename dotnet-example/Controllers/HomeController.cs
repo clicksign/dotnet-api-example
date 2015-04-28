@@ -7,8 +7,8 @@ namespace dotnet_example.Controllers
     {
         public ActionResult Index()
         {
-			var click = new Clicksign.Clicksign ();
-			ViewData["Message"] = "Welcome to ASP.NET MVC!" + click.Host;
+
+            ViewData["Message"] = "Welcome to clickSign teste";
 
 
             return View();
