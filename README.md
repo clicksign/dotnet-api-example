@@ -35,7 +35,7 @@ SignalR
   var documentList = clicksign.List();
 ```
 
-Mais exemplos de uso estão na classe [SimpleHub.cs](https://github.com/clicksign/dotnet-api-example/blob/master/dotnet-example/Hubs/SimpleHub.cs) ,e a documentação oficial está ná [Página do projeto no github](https://github.com/clicksign/clicksign-dotnet)
+Mais exemplos de uso estão na classe [ClickSignExampleCore](https://github.com/clicksign/dotnet-api-example/blob/master/dotnet-example.Core/ClickSignExampleCore.cs) ,e a documentação oficial está ná [Página do projeto no github](https://github.com/clicksign/clicksign-dotnet)
 
 
   
