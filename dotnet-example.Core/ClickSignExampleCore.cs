@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using Clicksign;
@@ -11,9 +12,12 @@ namespace dotnet_example.Core
     {
         protected Clicksign.Clicksign _clicksign;
 
+        protected string _emailExample;
+
         public ClickSignExampleCore()
         {
             _clicksign = new Clicksign.Clicksign();
+            _emailExample = ConfigurationManager.AppSettings["Clicksign-Host"];
         }
 
         public abstract void Send(string message);
@@ -32,6 +36,8 @@ namespace dotnet_example.Core
             var key = ListDocuments().First();
             Send("Downloading o primeiro documento");
             DownloadDocument(key);
+            Send("Reenviand email com o primeiro documento");
+            ResendDocument(key, _emailExample, "reenviando documento");
 
             Send("Fim");
         }
@@ -76,6 +82,11 @@ namespace dotnet_example.Core
             //Envio através do caminho do arquivo
             string filePath = GetDocumentFilePath();
             _clicksign.Upload(filePath);
+        }
+
+        public void ResendDocument(string key, string email, string message)
+        {
+            _clicksign.Resend(key, email, message);
         }
 
         protected virtual string GetDocumentFilePath()
