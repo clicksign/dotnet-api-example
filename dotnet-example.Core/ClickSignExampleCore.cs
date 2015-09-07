@@ -38,11 +38,13 @@ namespace dotnet_example.Core
             DownloadDocument(key);
             Send("Reenviand email com o primeiro documento");
             ResendDocument(key, _emailExample, "reenviando documento");
+            Send("Cancelando o primeiro documento");
+            CancelDocument(key);
 
             Send("Fim");
         }
 
-        private void DownloadDocument(string p)
+        public void DownloadDocument(string p)
         {
             DownloadResponse downloadResponse = new DownloadResponse();
             do
@@ -87,6 +89,10 @@ namespace dotnet_example.Core
         public void ResendDocument(string key, string email, string message)
         {
             _clicksign.Resend(key, email, message);
+        }
+        public void CancelDocument(string key)
+        {
+            _clicksign.Cancel(key);
         }
 
         protected virtual string GetDocumentFilePath()
